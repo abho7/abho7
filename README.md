@@ -1,6 +1,6 @@
-# Hey what's up, I'm Abhineeth Duddela
+# Abhineeth Duddela
 
-I am a competitive programmer and independent researcher focused on Natural Language Processing (NLP), data science, and AI. 
+Hello, I am a competitive programmer and independent researcher focused on Natural Language Processing (NLP), data science, and AI. 
 
 ## Main Highlights
 - **USACO Gold Division Competitor** (USA Computing Olympiad)
