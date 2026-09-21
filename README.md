@@ -15,6 +15,8 @@ NLP paper submitted to NHSJS 2025
 
 | | what it is | the number that matters |
 |---|---|---|
+| **[llm-inference-webgpu](https://github.com/abho7/llm-inference-webgpu)** | Qwen2.5-0.5B end to end on WebGPU: safetensors loader, BPE tokenizer, attention kernels, int8 and int4 quantization. No PyTorch, no `transformers`, no tokenizer library | Loses to ONNX Runtime and publishes the margin: **5.6x at prefill, 1.3x at decode**, on named hardware |
+| **[toy-compiler](https://github.com/abho7/toy-compiler)** | minic, compiled: lexer, parser, type checker, SSA IR, four optimization passes, linear-scan register allocation and a bytecode VM, no dependencies | **100,000 random programs, 0 disagreements** with the reference interpreter |
 | **[fluid-sim](https://github.com/abho7/fluid-sim)** | Incompressible Navier-Stokes on WebGPU compute shaders, MAC staggered grid, five pressure solvers | Numerical viscosity measured at **ν_num = 5.79e-4**, 2.9% of the physical ν |
 | **[ml-infra-platform](https://github.com/abho7/ml-infra-platform)** | A Raft engine, an HNSW index and a training framework composed into one platform, driven from outside as read-only dependencies | First cross-layer bug: **both components correct, every replica crashed** |
 | **[distributed-training-framework](https://github.com/abho7/distributed-training-framework)** | Data-parallel SGD, ring all-reduce and parameter server, six invariants checked every step | **1,960 checked steps**, 22 workers killed mid-step, worst gradient error **8.9e-16** |
