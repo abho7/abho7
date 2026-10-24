@@ -35,7 +35,7 @@ import sys
 import cv2
 import numpy as np
 from PIL import Image
-from rembg import remove
+from rembg import new_session, remove
 
 RAMP = " .`:-=+*cs#%@"     # bright/sparse -> dark/dense; leading space = blank
 COLS = 90                  # below ~88 the face muddies; far above it dominates
@@ -60,7 +60,7 @@ def prep(path, crop=None):
     if crop:
         src = src.crop(crop)
 
-    cut = remove(src)
+    cut = remove(src, session=new_session("u2net_human_seg"))  # pinned: the newer 1 GB default OOMs; plain u2net drops dark hair on dark backgrounds
     alpha = np.array(cut.split()[-1])
 
     # Composite onto white so everything outside the subject maps to the blank

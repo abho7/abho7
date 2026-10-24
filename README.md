@@ -11,6 +11,8 @@ NLP paper submitted to NHSJS 2025
 
 <div align="center">
 
+<img src="./ascii.svg" width="460" alt="Abhineeth Duddela"/>
+
 <img src="./stats.svg" width="620" alt="Contributions in the last year"/>
 
 </div>
@@ -71,7 +73,8 @@ confidently wrong result. They are on the report rather than quietly fixed.
 
 <img src="./hd-about-this-page.svg" width="620" alt="about this page"/>
 
-Every graphic on this page is drawn by [a scheduled action](.github/workflows/stats.yml)
+The portrait is a photo pushed through a character ramp by
+[`scripts/make_portrait.py`](scripts/make_portrait.py), run once. Every other graphic is drawn by [a scheduled action](.github/workflows/stats.yml)
 in this repository, straight from the GitHub GraphQL API, once a day, committing
 only what changed. Nothing loads from a third-party server, so nothing here can
 rate-limit or go dark. The SVGs animate with SMIL, since GitHub strips scripts,
