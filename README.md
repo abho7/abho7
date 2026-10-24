@@ -9,9 +9,13 @@ sentence.
 USACO Gold Division ·
 NLP paper submitted to NHSJS 2025
 
----
+<div align="center">
 
-### Things that are running
+<img src="./stats.svg" width="620" alt="Contributions in the last year"/>
+
+</div>
+
+<img src="./hd-running.svg" width="620" alt="running"/>
 
 | | what it is | the number that matters |
 |---|---|---|
@@ -33,9 +37,7 @@ closed form, so they are exact rather than sampled), and
 [flightpath-scheduler](https://github.com/abho7/flightpath-scheduler) (course
 scheduling as an NP-hard CSP, CP-SAT plus a dependency-free fallback).
 
----
-
-### How these are built
+<img src="./hd-how-its-built.svg" width="620" alt="how it's built"/>
 
 **From scratch means from scratch.** The consensus protocol, the HNSW graph,
 the FFT, the multigrid V-cycle and the all-reduce are written here, not
@@ -54,3 +56,25 @@ report are defects in its own harness, two of which would have produced a
 confidently wrong result. They are on the report rather than quietly fixed.
 
 **Python · C++ · Java · JavaScript · R · NumPy · WebGPU · asyncio**
+
+<img src="./hd-stats.svg" width="620" alt="stats"/>
+
+<div align="center">
+
+<img src="./streak.svg" width="620" alt="Current and longest streak"/>
+
+<img src="./langs.svg" width="620" alt="Top languages by bytes and by repo"/>
+
+<img src="./year.svg" width="620" alt="The last year, one character per day"/>
+
+</div>
+
+<img src="./hd-about-this-page.svg" width="620" alt="about this page"/>
+
+Every graphic on this page is drawn by [a scheduled action](.github/workflows/stats.yml)
+in this repository, straight from the GitHub GraphQL API, once a day, committing
+only what changed. Nothing loads from a third-party server, so nothing here can
+rate-limit or go dark. The SVGs animate with SMIL, since GitHub strips scripts,
+and carry an inlined [JetBrains Mono](scripts/fonts) subset, since it also strips
+CSS. Language totals cover public repositories only. Adapted from
+[andriidrok1](https://github.com/andriidrok1/andriidrok1).
