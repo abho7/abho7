@@ -54,14 +54,26 @@ ROW_DELAY = 0.09           # per-row stagger, seconds
 FAMILY = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
 
 
-def prep(path, crop=None):
+def prep(path, crop=None, model="isnet-general-use"):
     """Cut out the background, even the local contrast, then darken."""
     src = Image.open(path).convert("RGBA")
     if crop:
         src = src.crop(crop)
 
-    cut = remove(src, session=new_session("u2net_human_seg"))  # pinned: the newer 1 GB default OOMs; plain u2net drops dark hair on dark backgrounds
+    # Pinned, because the cutout model matters more than any parameter here:
+    # rembg's newer default is a 1 GB model that runs out of memory on small
+    # machines. isnet-general-use traces curly hair well on a light background;
+    # on a dark background it can lose dark hair, where u2net_human_seg holds on.
+    cut = remove(src, session=new_session(model))
     alpha = np.array(cut.split()[-1])
+
+    # Keep only the largest connected shape: slivers of door frame or chair
+    # that survive the cutout would otherwise print as stray specks.
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(
+        (alpha >= 128).astype("uint8"))
+    if n > 2:
+        keep = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
+        alpha[labels != keep] = 0
 
     # Composite onto white so everything outside the subject maps to the blank
     # end of the ramp. Skip this and the background fills with @ and %.
@@ -148,6 +160,8 @@ def main():
                                    "tight to the head so the whole grid goes to "
                                    "the face")
     ap.add_argument("--cols", type=int, default=COLS)
+    ap.add_argument("--model", default="isnet-general-use",
+                    help="rembg cutout model (try u2net_human_seg if hair goes missing)")
     ap.add_argument("--preview", action="store_true",
                     help="print the ASCII to the terminal as well")
     args = ap.parse_args()
@@ -159,7 +173,7 @@ def main():
             sys.exit("--crop needs four numbers: left,top,right,bottom")
         crop = tuple(parts)
 
-    lines = to_lines(prep(args.photo, crop), cols=args.cols)
+    lines = to_lines(prep(args.photo, crop, args.model), cols=args.cols)
     if args.preview:
         print("\n".join(lines))
 
