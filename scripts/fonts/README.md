@@ -6,10 +6,9 @@ base64 `@font-face`.
 
 Why inline it at all:
 
-* **Metrics.** The portrait's character grid assumes an advance width of exactly
-  0.600 em. JetBrains Mono is 600/1000 units, so the geometry is unchanged — but
-  a viewer whose default monospace is narrower (Consolas is ≈0.55) would
-  otherwise see the portrait about 7% too narrow. Inlining pins it.
+* **Metrics.** The year map's character grid assumes an advance width of
+  0.600 em. A viewer whose default monospace is narrower (Consolas is ≈0.55)
+  would otherwise see it misaligned. Inlining pins it.
 * **An external font URL cannot work here.** These SVGs are loaded through
   `<img>`, and a browser refuses to fetch subresources for an image document.
   A base64 data URI is the only mechanism, and it keeps the page free of
@@ -17,7 +16,6 @@ Why inline it at all:
 
 | file | weight | covers |
 |---|---|---|
-| `jbmono-ramp.woff2` | 400 | the 13 ramp characters in `ascii.svg` |
 | `jbmono-400.woff2` | 400 | basic latin, for the stat graphics |
 | `jbmono-600.woff2` | 600 | basic latin, for the stat graphics |
 
